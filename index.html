@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!DOCTYPE html>
+<html>
+<head>
+<!--   <title>Countdown Timer</title> -->
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body style="background-color: #5e357a;">
+<div id="countdown">
+<!--     <p>Countdown to 31 March 2029:</p>  -->
+<div id="timer">
+<div>
+
+  <!-- YEARS MONTHS WEEKS DAYS -->
+  <div id="countdown">
+    <div>Years: <p id="years">0</p></div>
+    <div>Months: <p id="months">0</p></div>
+    <div>Weeks: <p id="weeks">0</p></div>
+    <div>Days: <p id="days">0</p></div>
+    <div>Hours: <p id="hours">0</p></div>
+    <div>Minutes: <p id="minutes">0</p></div>
+    <div>Seconds: <p id="seconds">0</p></div>
+  </div>
+
+<script src="script.js"></script>
+</body>
+	<style>
+
+    div{
+      display: flex;
+      align-items: center;
+      color: #c4c4c4;
+    }
+
+    p{
+      margin-left: 10px;
+      color: #fff;
+    }
+/* 	#countdown {
+    text-align: center; */
+/*     max-width: 500px !important; */
+/* } */
+		#timer p{
+			text-transform: uppercase;
+			font-weight: 600;
+/* 			margin: 10px 0; */
+			text-align: center;
+		}
+/* 		#countdown p, #timer{
+			display: inline-block;
+		} */
+#timer {
+  display: flex;
+/*   justify-content: center; */
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+#timer div {
+   margin: 0 10px; 
+}
+		#timer span {
+  	display: inline-block;	
+}
+		#timer span.labelnum{
+			font-family: 'Montserrat', sans-serif;
+			font-weight: 600;
+			font-size: 16px;
+			color: #ffffff;
+			margin-right: 5px;
+		}
+
+		#timer span.label{
+			font-family: 'Roboto', sans-serif;
+			font-size: 10px;
+			font-weight: 500;
+			color: #a0b5cc;
+		}
+	</style>
+	
+	<script>
+      // YEARS MONTHS WEEKS DAYS hours minues secondss
+      document.addEventListener('DOMContentLoaded', (event) => {
+            const endDate = new Date('March 31, 2029 23:59:59').getTime();
+
+            function updateCountdown() {
+                const now = new Date().getTime();
+                const timeRemaining = endDate - now;
+
+                if (timeRemaining < 0) {
+                    document.getElementById('years').textContent = 0;
+                    document.getElementById('months').textContent = 0;
+                    document.getElementById('weeks').textContent = 0;
+                    document.getElementById('days').textContent = 0;
+                    document.getElementById('hours').textContent = 0;
+                    document.getElementById('minutes').textContent = 0;
+                    document.getElementById('seconds').textContent = 0;
+                    return;
+                }
+
+                const years = Math.floor(timeRemaining / (1000 * 60 * 60 * 24 * 365.25));
+                const remainingAfterYears = timeRemaining % (1000 * 60 * 60 * 24 * 365.25);
+
+                const months = Math.floor(remainingAfterYears / (1000 * 60 * 60 * 24 * 30.44));
+                const remainingAfterMonths = remainingAfterYears % (1000 * 60 * 60 * 24 * 30.44);
+
+                const weeks = Math.floor(remainingAfterMonths / (1000 * 60 * 60 * 24 * 7));
+                const remainingAfterWeeks = remainingAfterMonths % (1000 * 60 * 60 * 24 * 7);
+
+                const days = Math.floor(remainingAfterWeeks / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((remainingAfterWeeks % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((remainingAfterWeeks % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((remainingAfterWeeks % (1000 * 60)) / 1000);
+
+                document.getElementById('years').textContent = years;
+                document.getElementById('months').textContent = months;
+                document.getElementById('weeks').textContent = weeks;
+                document.getElementById('days').textContent = days;
+                document.getElementById('hours').textContent = hours;
+                document.getElementById('minutes').textContent = minutes;
+                document.getElementById('seconds').textContent = seconds;
+            }
+
+            setInterval(updateCountdown, 1000);
+            updateCountdown();
+        });
+	</script>
+</html>
+</body>
+</html>
